@@ -1,6 +1,34 @@
 import sys
-sys.stdin = open('input.txt', 'r')
+sys.stdin = open('C:/Users/Joshua/python_workspace/coding_test/섹션 4/4. 마구간 정하기/in1.txt', 'r')
 
-#n, c = map(int,input().split())
-n, c = 5, 3
+def Count(len):
+    cnt = 1
+    ep = Line[0]
+    for i in range(1, n):
+        if Line[i]-ep >= len:
+            cnt+=1
+            ep=Line[i]
+    return cnt
 
+n, c = map(int,input().split())
+
+Line = []
+
+for _ in range(n):
+    tmp = int(input())
+    Line.append(tmp)
+
+Line.sort()
+
+lt = 1
+rt = Line[n-1]
+
+while lt <= rt:
+    mid = (lt + rt)//2
+    if Count(mid) >= c:
+        res = mid
+        lt = mid+1
+    else:
+        rt = mid-1
+
+print(res)
